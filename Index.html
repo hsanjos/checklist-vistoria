@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Checklist de Avaliação Veicular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f7f7f7; --card:#ffffff; --text:#333; --muted:#666; --primary:#2f7d32; --border:#e0e0e0; }
+  *{box-sizing:border-box}
+  body{font-family:'Inter',system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0}
+  .container{max-width:960px;margin:0 auto;padding:16px}
+  header.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:grid;grid-template-columns:100px 1fr;grid-gap:16px;align-items:center}
+  header h1{margin:0;font-size:1.4rem}
+  header p{margin:4px 0 0;color:var(--muted)}
+  #logo{width:100%;max-height:90px;object-fit:contain;border:1px dashed var(--border);background:#fafafa;border-radius:8px}
+  .upload{font-size:.85rem;color:var(--muted)}
+  .section.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:16px}
+  .section h2{margin:0 0 12px;font-size:1.1rem}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;grid-gap:12px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);grid-gap:12px}
+  @media (max-width:640px){header.card{grid-template-columns:1fr}.grid-2,.grid-3{grid-template-columns:1fr}}
+  label{font-weight:600;font-size:.95rem}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+  input[type=text],input[type=date],input[type=tel],textarea{padding:10px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;background:#fff}
+  textarea{min-height:64px}
+  .item{border-top:1px dashed var(--border);padding-top:12px;margin-top:12px}
+  .item-head{display:flex;align-items:center;gap:12px}
+  .item-head .status{display:flex;align-items:center;gap:6px;font-weight:600}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px}
+  button{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+  .photo-input{display:flex;gap:8px;align-items:center}
+  .photo-input input{flex:1}
+  .chip{display:inline-block;background:#eef2ee;color:var(--primary);border:1px solid #d9e7d9;border-radius:999px;padding:2px 8px;font-size:.8rem}
+  .note{font-size:.9rem;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="card">
+      <div>
+        <img id="logo" alt="Seu logo aqui" />
+        <div class="upload">
+          <label for="logoUpload">Enviar logo (PNG/JPG/SVG):</label>
+          <input type="file" id="logoUpload" accept="image/*" />
+        </div>
+      </div>
+      <div>
+        <h1>Checklist de Avaliação Veicular</h1>
+        <p><strong>Avaliador:</strong> Hamilton Anjos – <span class="chip">placa preta é comigo! - 27 98133-2184</span></p>
+        <p class="note">Se o PDF não baixar, verifique conexão e tente outro navegador (Chrome/Edge). O botão só funciona após interação do usuário.</p>
+      </div>
+    </header>
+
+    <section class="section card">
+      <h2>Dados do Veículo</h2>
+      <div class="grid-3">
+        <div class="field"><label for="marca">Marca</label><input id="marca" type="text" placeholder="Volkswagen" /></div>
+        <div class="field"><label for="modelo">Modelo</label><input id="modelo" type="text" placeholder="Fusca" /></div>
+        <div class="field"><label for="ano">Ano</label><input id="ano" type="text" placeholder="1995" /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="placa">Placa</label><input id="placa" type="text" placeholder="ABC-1234" /></div>
+        <div class="field"><label for="local">Local da vistoria</label><input id="local" type="text" placeholder="Vitória/ES" /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="data">Data</label><input id="data" type="date" /></div>
+        <div></div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>Dados do Cliente Comprador</h2>
+      <div class="grid-2">
+        <div class="field"><label for="comprador">Nome</label><input id="comprador" type="text" placeholder="Nome do comprador" /></div>
+        <div class="field"><label for="tel_comprador">Telefone</label><input id="tel_comprador" type="tel" placeholder="(27) 00000-0000" /></div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>Dados do Vendedor</h2>
+      <div class="grid-2">
+        <div class="field"><label for="vendedor">Nome</label><input id="vendedor" type="text" placeholder="Nome do vendedor" /></div>
+        <div class="field"><label for="tel_vendedor">Telefone</label><input id="tel_vendedor" type="tel" placeholder="(27) 00000-0000" /></div>
+      </div>
+    </section>
+
+    <!-- Checklist organizado -->
+    <section class="section card" id="doc-id">
+      <h2>1. Documentação e Identificação</h2>
+      <div class="item">
+        <div class="item-head"><label>Conferir número do chassi, número do motor e etiquetas originais</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Verificar se número do motor consta no CRLV</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Manual, macaco, triângulo, chave original e reserva</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+		</div>
+      <div class="item">
+        <div class="item-head"><label>Notas e histórico de manutenção</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="estrutura-pintura">
+      <h2>2. Estrutura Externa, Frisos, Emblemas, Vidros e Pintura</h2>
+      <div class="item">
+        <div class="item-head"><label>Portas, laterais, teto, capô e tampa do motor (alinhamento, folgas, mossas, inspeção visual de longe)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Vincos da estrutura e calhas de teto</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Pintura geral (espessímetro, retoques, diferença de tonalidade, observar sob boa iluminação)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	   <div class="item">
+        <div class="item-head"><label>Estado e originalidade dos vidros (riscos, logo VW, marcação de chassis)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Estado e originalidade dos faróis e lanternas (quebrados, craquelados, riscos, logo VW ou fabricante)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Portinhola e bocal de abastecimento</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Emblemas, adesivos, estribos e frisos (Estado e originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Inspecionar assoalho por cima e por baixo (ferrugem, soldas, originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Verificar caixa de estepe (parte interna e externa, sinais de reparo ou corrosão)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Conferir saia traseira (amassados, reparos, ferrugem)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Examinar colunas, longarinas e pontos de fixação da suspensão</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="motor-sistemas">
+      <h2>3. Motor e Sistemas</h2>
+	  <div class="item">
+        <div class="item-head"><label>Conferir originalidade do motor (carburação, bobina, distribuidor, termac, canister)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Integridade do escapamento (amassados, barulhos, ferrugem)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Vazamentos, nível e qualidade (óleo, combustível)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Verificar funcionamento do motor (partida fácil, marcha lenta estável)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Funcionamento dos sistemas de afogador, canister e pré-aquecimento</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="teste-dinamico">
+      <h2>4. Teste Dinâmico</h2>
+      <div class="item">
+        <div class="item-head"><label>Rodar com o carro e ouvir motor, suspensão, direção</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Testar eficiência dos freios e alinhamento da direção</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Observar vibrações ou ruídos anormais</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Testar embreagem (ponto de engate, patinação)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="freios">
+      <h2>5. Sistema de Freios</h2>
+      <div class="item">
+        <div class="item-head"><label>Conferir vazamentos nas rodas, mangotes e cilindro mestre</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Altura e firmeza dos pedais  </label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="eletrica">
+      <h2>6. Elétrica</h2>
+      <div class="item">
+        <div class="item-head"><label>Faróis, lanternas, setas, luz de freio, luz de ré, luz de placa, luz de cortesia e faróis auxiliares</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Iluminação do painel e instrumentos, rádio (se houver)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Bateria (data de fabricação, vazamento)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Instalação elétrica (estado geral, emendas e originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="interior">
+      <h2>7. Interior</h2>
+      <div class="item">
+        <div class="item-head"><label>Bancos, estofamento, carpetes, forro de teto, chiqueirinho (originalidade, rasgos, inclusive parte traseira e barra dos bancos)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Painel, volante, manoplas, pedaleiras, quebra-sóis (funcionamento e originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Pestanas, travamento das portas, subida de vidros, porta-luvas (funcionamento e originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Pintura interna, entradas das portas, sob painel, portas (desgastes furos e retoques)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+	  <div class="item">
+        <div class="item-head"><label>Assoalhos (reparos, isolamento e originalidade)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <section class="section card" id="porta-malas">
+      <h2>8. Porta-malas</h2>
+      <div class="item">
+        <div class="item-head"><label>Estado do papelão e massas de calafetar</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Sistema de esguicho e mangueiras (funcionamento e vazamentos)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+      <div class="item">
+        <div class="item-head"><label>Tanque (boia, vazamentos)</label><div class="status"><input type="checkbox" /><span>OK</span></div></div>
+        <textarea placeholder="Observações"></textarea>
+        <div class="photo-input"><label>Foto:</label><input type="file" accept="image/*" capture="environment" /></div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="btnPDF">Salvar Vistoria em PDF</button>
+    </div>
+  </div>
+
+  <!-- jsPDF via CDN: usar defer e sem integrity para evitar bloqueio -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoUpload = document.getElementById('logoUpload');
+      const logoImg = document.getElementById('logo');
+      logoUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => { logoImg.src = reader.result; };
+        reader.readAsDataURL(file);
+      });
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve) => {
+          if (!file) return resolve(null);
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+        });
+      }
+
+      async function generatePDF() {
+        try {
+          if (!window.jspdf || !window.jspdf.jsPDF) {
+            alert('Biblioteca de PDF não carregada. Verifique sua conexão ou tente outro navegador.');
+            return;
+          }
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+          // Cabeçalho
+          if (logoImg && logoImg.src) {
+            try { doc.addImage(logoImg.src, 'PNG', 10, 10, 30, 15); } catch(e) {}
+          }
+          doc.setFontSize(14); doc.text('Checklist de Avaliação Veicular', 50, 16);
+          doc.setFontSize(11); doc.text('Avaliador: Hamilton Anjos – placa preta é comigo!', 50, 22);
+
+          let y = 32;
+          const line = (txt) => { doc.text(String(txt), 10, y); y += 6; if (y > 280) { doc.addPage(); y = 20; } };
+
+          // Dados do veículo
+          line('Dados do Veículo');
+          line('Marca: ' + (document.getElementById('marca').value || ''));
+          line('Modelo: ' + (document.getElementById('modelo').value || ''));
+          line('Ano: ' + (document.getElementById('ano').value || ''));
+          line('Placa: ' + (document.getElementById('placa').value || ''));
+          line('Local: ' + (document.getElementById('local').value || ''));
+          line('Data: ' + (document.getElementById('data').value || ''));
+          y += 2;
+
+          // Comprador/Vendedor
+          line('Dados do Cliente Comprador');
+          line('Nome: ' + (document.getElementById('comprador').value || ''));
+          line('Telefone: ' + (document.getElementById('tel_comprador').value || ''));
+          y += 2;
+          line('Dados do Vendedor');
+          line('Nome: ' + (document.getElementById('vendedor').value || ''));
+          line('Telefone: ' + (document.getElementById('tel_vendedor').value || ''));
+          y += 2;
+
+          // Todas seções do checklist
+          const sections = document.querySelectorAll('.section.card');
+          for (const section of sections) {
+            const h2 = section.querySelector('h2');
+            if (!h2) continue;
+            const title = h2.textContent.trim();
+            if (!/^\d+\./.test(title)) continue;
+            doc.setFontSize(12); line(title);
+            doc.setFontSize(10);
+            const items = section.querySelectorAll('.item');
+            for (const item of items) {
+              const label = item.querySelector('.item-head label').textContent.trim();
+              const checked = item.querySelector('input[type="checkbox"]').checked ? 'OK' : 'Pendência';
+              const obs = item.querySelector('textarea').value.trim();
+              line('• ' + label + ' — ' + checked);
+              if (obs) line('  Obs: ' + obs);
+              const fileInput = item.querySelector('input[type="file"]');
+              const file = fileInput && fileInput.files ? fileInput.files[0] : null;
+              const dataURL = await readFileAsDataURL(file);
+              if (dataURL) {
+                const imgW = 60, imgH = 45;
+                if (y + imgH > 280) { doc.addPage(); y = 20; }
+                try { doc.addImage(dataURL, 'JPEG', 15, y, imgW, imgH); y += imgH + 4; }
+                catch(e) { try { doc.addImage(dataURL, 'PNG', 15, y, imgW, imgH); y += imgH + 4; } catch(e2) { line('[Falha ao inserir foto]'); } }
+              }
+            }
+            y += 2;
+          }
+
+          doc.save('vistoria_fusca.pdf');
+        } catch (err) {
+          console.error(err);
+          alert('Ocorreu um erro ao gerar o PDF. Tente novamente.');
+        }
+      }
+
+      document.getElementById('btnPDF').addEventListener('click', (e) => { e.preventDefault(); generatePDF(); });
+    });
+  </script>
+</body>
+</html>
